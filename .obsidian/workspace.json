@@ -129,13 +129,21 @@
                 "file": "Csharp/CsharpNote.md"
               }
             }
+          },
+          {
+            "id": "8e621e204120093f",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
