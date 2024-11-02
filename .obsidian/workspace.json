@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Csharp/CsharpNote.md",
+                "file": "C++/code过程遇到的问题.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "86c6dd346859a020",
@@ -86,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Csharp/CsharpNote.md",
+                "file": "C++/code过程遇到的问题.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Csharp/CsharpNote.md",
+                "file": "C++/code过程遇到的问题.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Csharp/CsharpNote.md"
+                "file": "C++/code过程遇到的问题.md"
               }
             }
           },
@@ -158,7 +157,10 @@
   },
   "active": "27e74bc604ef8310",
   "lastOpenFiles": [
+    "Pasted image 20241102191957.png",
+    "Pasted image 20241102191744.png",
     "Csharp/CsharpNote.md",
+    "C++/code过程遇到的问题.md",
     "C++",
     "Csharp"
   ]
