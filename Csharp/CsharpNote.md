@@ -191,6 +191,10 @@ int number = 123; object boxedNumber = number; // 装箱：将int类型转换为
 
 在上面的代码中，`number`是一个值类型`int`，而`boxedNumber`是一个引用类型`object`。通过装箱，`number`的值被复制到堆内存中并作为引用类型存储。
 
+其实就是，被赋值的对象，进行转换成引用类型
+
+
+
 #### 拆箱（Unboxing）
 
 - **定义**：将一个引用类型转换回值类型的过程。
@@ -204,3 +208,5 @@ int unboxedNumber = (int)boxedNumber; // 拆箱：将object类型转换回int类
 ```
 
 拆箱操作需要显式的类型转换。拆箱不是简单地删除引用，而是将数据还原为值类型，因此可能会产生性能开销。
+
+其实就是
