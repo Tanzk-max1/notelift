@@ -210,3 +210,95 @@ int unboxedNumber = (int)boxedNumber; // 拆箱：将object类型转换回int类
 拆箱操作需要显式的类型转换。拆箱不是简单地删除引用，而是将数据还原为值类型，因此可能会产生性能开销。
 
 其实就是
+
+
+
+
+## 11-4
+
+其实主要是三个部分组成格式化：索引号，对齐说明符，格式字段
+具体参考{index ， alignment:format} index 是必须的，指定列表中某一项，alignment可选，控制字符串输出的宽度以及对齐方式（左对齐或右对齐），format用来指定项的格式--》ps： ":" 两个作用存在差异，一个是对齐，使用的是逗号，如果是格式，使用的是冒号
+###### 方法1
+格式化数字字符串
+其实就是使用 “ $ ” 这个符号，然后可以直接在字符串中插入变量
+```c#
+int age = 30;
+string name = "alice";
+string greeting = $"Hello, {name}. You are {age} years old."; Console.WriteLine(greeting); // 输出: Hello, Alice. You are 30 years old.
+```
+插值字符串使用 `$` 前缀，变量用 `{}` 包裹。 
+
+ ###### **方法2**
+string result = string.Format("模板字符串 {index}", 值1, 值2, ...);
+```c#
+//string.Format();//格式化输入
+ string name = "Alice";
+int age = 25;
+
+string result = string.Format("名字是 {0}, 年龄是 {1}", name, age);
+Console.WriteLine(result);
+//输出：名字是 Alice, 年龄是 25
+
+```
+###### 3. `Console.WriteLine()` 格式化
+
+`Console.WriteLine()` 也支持使用 `{}` 进行格式化。
+
+```csharp
+`int age = 30; string name = "Alice"; Console.WriteLine("Hello, {0}. You are {1} years old.", name, age); // 输出: Hello, Alice. You are 30 years old.`
+```
+
+###### 4. `string.Concat()` 方法
+
+可以通过 `string.Concat()` 方法将多个字符串拼接在一起。
+
+
+
+```csharp
+`string part1 = "Hello, "; string part2 = "world!"; string result = string.Concat(part1, part2); Console.WriteLine(result); // 输出: Hello, world!`
+```
+
+###### 5. 使用 `+` 拼接字符串
+
+可以使用 `+` 运算符拼接字符串，简单但不推荐用于大量拼接，因为效率较低。
+
+```csharp
+`string name = "Alice"; int age = 30; string greeting = "Hello, " + name + ". You are " + age + " years old."; Console.WriteLine(greeting); // 输出: Hello, Alice. You are 30 years old.`
+```
+
+###### 6. `StringBuilder` 类
+
+对于大量字符串拼接，使用 `StringBuilder` 更有效率。
+
+```csharp
+`using System.Text;  StringBuilder sb = new StringBuilder(); sb.Append("Hello, "); sb.Append("Alice."); sb.Append(" You are "); sb.Append(30); sb.Append(" years old."); Console.WriteLine(sb.ToString()); // 输出: Hello, Alice. You are 30 years old.`
+```
+
+###### 7. 格式化数值和日期
+
+C# 支持对数值和日期进行格式化。
+
+```csharp
+`double price = 123.456; Console.WriteLine(string.Format("Price: {0:C}", price)); // 输出: Price: $123.46 （C表示货币格式）  DateTime today = DateTime.Now; Console.WriteLine(string.Format("Today is {0:yyyy-MM-dd}", today)); // 输出: Today is 2024-11-04`
+```
+
+- `C` 表示货币格式，`F` 表示固定点数格式，`yyyy-MM-dd` 是日期格式。
+
+###### 8. `ToString()` 方法中的格式化
+
+数值类型的 `ToString()` 方法可以直接接受格式字符串：
+
+
+```csharp
+`double price = 123.456; string formattedPrice = price.ToString("C"); // 输出类似：$123.46  DateTime today = DateTime.Now; string formattedDate = today.ToString("yyyy-MM-dd"); // 输出: 2024-11-04`
+```
+
+###### 9. 自定义格式化器
+
+你也可以使用自定义格式化器，例如格式化浮点数的精度或整数的位数：
+
+```csharp
+`double number = 123.456789; Console.WriteLine(string.Format("{0:F2}", number)); // 输出: 123.46 (保留两位小数)  int num = 42; Console.WriteLine(string.Format("{0:D5}", num)); // 输出: 00042 (将数字格式化为 5 位宽度)`
+
+```
+这些方式可以帮助你根据需要格式化字符串，以便更好地控制输出。根据具体情况，选择合适的字符串格式化方式。
