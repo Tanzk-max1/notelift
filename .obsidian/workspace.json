@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "C++/code过程遇到的问题.md",
+                "file": "Csharp/CsharpNote.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "C++/code过程遇到的问题.md",
+                "file": "Csharp/CsharpNote.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "C++/code过程遇到的问题.md",
+                "file": "Csharp/CsharpNote.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "C++/code过程遇到的问题.md"
+                "file": "Csharp/CsharpNote.md"
               }
             }
           },
@@ -155,12 +155,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "27e74bc604ef8310",
+  "active": "4a37210c54e79988",
   "lastOpenFiles": [
-    "Pasted image 20241102191957.png",
-    "Pasted image 20241102191744.png",
-    "Csharp/CsharpNote.md",
     "C++/code过程遇到的问题.md",
+    "Pasted image 20241102191957.png",
+    "Csharp/Pasted image 20241102191744.png",
+    "Csharp/CsharpNote.md",
     "C++",
     "Csharp"
   ]
