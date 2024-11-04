@@ -143,8 +143,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -159,6 +158,8 @@
   },
   "active": "27e74bc604ef8310",
   "lastOpenFiles": [
+    "Csharp/other/Pasted image 20241104234123.png",
+    "Csharp/other",
     "C++/code过程遇到的问题.md",
     "C++/other/Pasted image 20241104231338.png",
     "C++/other",
