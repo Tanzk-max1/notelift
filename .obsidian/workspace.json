@@ -69,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "86c6dd346859a020",
@@ -142,8 +141,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -158,6 +156,7 @@
   },
   "active": "27e74bc604ef8310",
   "lastOpenFiles": [
+    "Csharp/ConsoleApp1",
     "Csharp/CsharpNote.md",
     "Csharp/other/Pasted image 20241104234123.png",
     "Csharp/other",
