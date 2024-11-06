@@ -138,8 +138,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "horizontal",
@@ -159,6 +158,7 @@
   },
   "active": "27e74bc604ef8310",
   "lastOpenFiles": [
+    "Csharp/CsharpNote.md",
     "Csharp/other/Pasted image 20241104234123.png",
     "Csharp/other",
     "C++/code过程遇到的问题.md",
@@ -167,7 +167,6 @@
     "C++/Pasted image 20241104231241.png",
     "C++/other/Pasted image 20241102191744.png",
     "C++/other/Pasted image 20241102191957.png",
-    "Csharp/CsharpNote.md",
     "C++",
     "Csharp"
   ]
