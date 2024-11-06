@@ -69,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "86c6dd346859a020",
@@ -79,6 +80,24 @@
         "id": "d22c5f69eea4e5e7",
         "type": "tabs",
         "children": [
+          {
+            "id": "8f114b7bc323e86e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Csharp/CsharpNote.md"
+              }
+            }
+          },
+          {
+            "id": "8e621e204120093f",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
+          },
           {
             "id": "59cb7ed2ee59a638",
             "type": "leaf",
@@ -118,30 +137,14 @@
                 "useHierarchy": true
               }
             }
-          },
-          {
-            "id": "8f114b7bc323e86e",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "Csharp/CsharpNote.md"
-              }
-            }
-          },
-          {
-            "id": "8e621e204120093f",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {}
-            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -156,6 +159,8 @@
   },
   "active": "27e74bc604ef8310",
   "lastOpenFiles": [
+    "Csharp/other/Pasted image 20241106230537.jpg",
+    "Csharp/other/Pasted image 20241106230531.jpg",
     "Csharp/ConsoleApp1",
     "Csharp/CsharpNote.md",
     "Csharp/other/Pasted image 20241104234123.png",
