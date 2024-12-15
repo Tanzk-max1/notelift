@@ -903,3 +903,134 @@ public class MyClass {
 }
 // 访问静态字段
 int value = MyClass.staticField;
+```
+
+
+### 实例成员（Instance Members）
+
+实例成员是属于类的实例（对象）的成员，每个对象实例都有自己的副本。
+
+#### 实例字段（Instance Fields）
+
+```csharp
+public class Person
+{
+    public string Name; // 实例字段，每个Person对象都有自己的Name
+}
+```
+
+#### 实例方法（Instance Methods）
+
+```csharp
+public class Person
+{
+    public void IntroduceYourself() // 实例方法
+    {
+        Console.WriteLine($"Hello, my name is {Name}.");
+    }
+}
+```
+
+#### 实例属性（Instance Properties）
+
+```csharp
+public class Person
+{
+    public string Name { get; set; } // 实例属性
+}
+```
+
+#### 实例事件（Instance Events）
+
+```csharp
+public class Person
+{
+    public event EventHandler NameChanged; // 实例事件
+
+    public void ChangeName(string newName)
+    {
+        Name = newName;
+        NameChanged?.Invoke(this, EventArgs.Empty);
+    }
+}
+```
+
+### 静态成员（Static Members）
+
+静态成员是属于类的，而不是类的任何特定实例的成员。它们通过类名直接访问，而不是通过类的实例。
+
+#### 静态字段（Static Fields）
+
+
+```csharp
+public class Person
+{
+    public static int NumberOfPeople; // 静态字段，所有实例共享同一个NumberOfPeople
+}
+```
+
+#### 静态方法（Static Methods）
+
+
+```csharp
+public class MathHelper
+{
+    public static int Add(int a, int b) // 静态方法
+    {
+        return a + b;
+    }
+}
+```
+
+#### 静态属性（Static Properties）
+
+```csharp
+public class Configuration
+{
+    public static string ApiKey { get; set; } // 静态属性
+}
+```
+
+#### 静态事件（Static Events）
+
+```csharp
+public class Logger
+{
+    public static event EventHandler LogEvent; // 静态事件
+
+    public static void WriteLog(string message)
+    {
+        LogEvent?.Invoke(null, new EventArgs { Message = message });
+    }
+}
+```
+
+### 使用示例
+
+#### 使用实例成员
+
+```csharp
+Person person1 = new Person();
+person1.Name = "Alice";
+person1.IntroduceYourself(); // 输出: Hello, my name is Alice.
+
+Person person2 = new Person();
+person2.Name = "Bob";
+person2.IntroduceYourself(); // 输出: Hello, my name is Bob.
+```
+
+#### 使用静态成员
+
+```csharp
+Person.NumberOfPeople = 2; // 直接通过类名访问静态字段
+
+int sum = MathHelper.Add(5, 3); // 直接通过类名访问静态方法
+Console.WriteLine(sum); // 输出: 8
+
+Configuration.ApiKey = "12345"; // 直接通过类名访问静态属性
+Console.WriteLine(Configuration.ApiKey); // 输出: 12345
+
+Logger.WriteLog("Log message"); // 直接通过类名访问静态方法
+```
+
+在实际编程中，选择使用实例成员还是静态成员取决于你的设计需求。实例成员适用于需要在不同对象之间保持独立状态的情况，而静态成员适用于所有对象共享相同数据的情况。
