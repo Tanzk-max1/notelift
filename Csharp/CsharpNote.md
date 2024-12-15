@@ -1034,3 +1034,62 @@ Logger.WriteLog("Log message"); // 直接通过类名访问静态方法
 ```
 
 在实际编程中，选择使用实例成员还是静态成员取决于你的设计需求。实例成员适用于需要在不同对象之间保持独立状态的情况，而静态成员适用于所有对象共享相同数据的情况。
+
+
+
+### 访问修饰符
+类的内部，成员之家你可以随意访问
+访问修饰符，指明外部程序如何访问类中的成员。
+
+```
+字段
+    访问修饰符 类型 标识符;
+方法
+    访问修饰符 返回类型 方法名()
+    {
+        ...
+    }
+```
+
+五种访问修饰符
+
+- 私有的（private）
+- 公有的（public）
+- 受保护的（protected）
+- 内部的（internal）
+- 受保护内部的（protected internal）
+
+##### 私有访问和公用访问
+
+- 私有访问是默认的访问级别
+- 实例的公有成员可以被程序中的其他对象访问
+
+
+### 从类的内部访问成员
+
+---
+
+类的成员仅用其他类成员的名称就可以访问它们
+
+```cs
+class DaysTemp
+｛
+    //字段
+    private int High = 75;
+    private int Low = 45;
+    //方法
+    private int GetHigh()
+    {
+        return High;
+    }
+    private int GetLow()
+    {
+        return Low;
+    }
+    public float Average()
+    {
+        return (GetHigh()+GetLow())/2;//访问私有方法
+    }
+
+```
+![](https://images2015.cnblogs.com/blog/759721/201611/759721-20161107140731920-764925545.jpg)
