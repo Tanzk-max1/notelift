@@ -830,3 +830,76 @@ theDealer = new Dealer();//为类对象分配内存并赋给变量
 ```
 
 ![[Pasted image 20241211224507.png]]
+
+## 12-15
+
+之前学到了在声明了之后，可以通过设置对象，然后引用的对象是theDealer；
+然后为他分配内存这个做法
+
+后面就是实例成员
+类声明相当于模板
+
+### 实例成员
+类声明相当于模板，通过这个模板想创建多少个类的实例都可以。
+
+- 实例成员：类的每个实例都是不同的实体，它们有自己的一组数据成员，不同于同一类的其他实例。因为这些数据成员都和类的实例相关，所以被称为实例成员
+- 静态成员：静态成员是与类相关的成员，静态成员被加载到静态存储区，且只被创建一次，类的所有实例共享静态成员
+
+
+1. **实例变量（字段）**：这些是类的非静态字段，每个对象实例都有自己的独立副本。
+
+    ```csharp
+    public class MyClass {
+        public int instanceField;
+    }
+    ```
+    
+2. **实例方法**：这些方法可以在对象实例上调用，并且可以访问类的实例变量。
+
+    ```csharp
+    public class MyClass {
+        public void InstanceMethod() {
+            // 可以访问实例变量
+        }
+    }
+    ```
+    
+3. **实例属性**：这些属性也是每个对象实例独有的。
+    ```csharp
+    public class MyClass {
+        private int _instanceProperty;
+        public int InstanceProperty {
+            get { return _instanceProperty; }
+            set { _instanceProperty = value; }
+        }
+    }
+    ```
+    
+4. **实例事件**：这些事件是每个对象实例独有的，可以在对象实例上订阅和触发。
+
+    ```csharp
+    public class MyClass {
+        public event EventHandler InstanceEvent;
+        protected virtual void OnInstanceEvent() {
+            InstanceEvent?.Invoke(this, EventArgs.Empty);
+        }
+    }
+    ```
+5. **构造函数**：虽然构造函数本身不是成员，但它们用于创建类的实例，并且每个实例在创建时都会调用。
+
+    ```csharp
+    public class MyClass {
+        public MyClass() {
+            // 构造函数代码
+        }
+    }
+    ```
+    
+
+与实例成员相对的是**静态成员**，它们属于类本身而不是类的任何特定实例。静态成员包括静态字段、静态方法、静态属性和静态事件。静态成员可以通过类名直接访问，而不需要创建类的实例。
+```csharp
+public class MyClass {
+    public static int staticField;
+}
+// 访问静态字段
+int value = MyClass.staticField;
