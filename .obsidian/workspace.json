@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Csharp/CsharpNote.md",
+                "file": "Csharp/CSharp设计模式.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "86c6dd346859a020",
@@ -86,7 +85,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Csharp/CsharpNote.md"
+                "file": "Csharp/CSharp设计模式.md"
               }
             }
           },
@@ -104,7 +103,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Csharp/CsharpNote.md",
+                "file": "Csharp/CSharp设计模式.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +120,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Csharp/CsharpNote.md",
+                "file": "Csharp/CSharp设计模式.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -142,8 +141,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -156,8 +154,11 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "8f114b7bc323e86e",
+  "active": "27e74bc604ef8310",
   "lastOpenFiles": [
+    "Csharp/other/2898190955aec9f9dde1627e68e9069.png",
+    "Csharp/CsharpNote.md",
+    "Csharp/CSharp设计模式.md",
     "Csharp/other/Pasted image 20241211224507.png",
     "Csharp/other/Pasted image 20241116001247.jpg",
     "Csharp/other/Pasted image 20241116001221.jpg",
@@ -165,7 +166,6 @@
     "Csharp/other/Pasted image 20241106230537.jpg",
     "Csharp/other/Pasted image 20241106230531.jpg",
     "Csharp/ConsoleApp1",
-    "Csharp/CsharpNote.md",
     "Csharp/other/Pasted image 20241104234123.png",
     "Csharp/other",
     "C++/code过程遇到的问题.md",
@@ -173,7 +173,6 @@
     "C++/other",
     "C++/Pasted image 20241104231241.png",
     "C++/other/Pasted image 20241102191744.png",
-    "C++/other/Pasted image 20241102191957.png",
     "C++",
     "Csharp"
   ]

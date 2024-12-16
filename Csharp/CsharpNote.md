@@ -1095,4 +1095,28 @@ class DaysTemp
 ![](https://images2015.cnblogs.com/blog/759721/201611/759721-20161107140731920-764925545.jpg)
 
 
-12-16 
+## 12-16 第五章
+
+### 方法体内部代码的执行
+
+---
+
+方法体可包含以下项目
+
+- 本地变量
+- 控制流结构
+- 方法调用
+- 内嵌的块
+
+```cs
+static void Main()
+{
+    int myInt = 3;        //本地变量
+    while(myInt > 0)      //控制流结构
+    {
+        --myInt;
+        PrintMyMessage(); //方法调用
+    }
+}
+```
+
