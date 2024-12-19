@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Csharp/CSharp设计模式.md",
+                "file": "Csharp/CsharpNote.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Csharp/CSharp设计模式.md"
+                "file": "Csharp/CsharpNote.md"
               }
             }
           },
@@ -103,7 +103,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Csharp/CSharp设计模式.md",
+                "file": "Csharp/CsharpNote.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +120,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Csharp/CSharp设计模式.md",
+                "file": "Csharp/CsharpNote.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -155,11 +155,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "8e621e204120093f",
+  "active": "27e74bc604ef8310",
   "lastOpenFiles": [
+    "Csharp/other/Pasted image 20241219224738.jpg",
+    "Csharp/CSharp设计模式.md",
     "Csharp/other/2898190955aec9f9dde1627e68e9069.png",
     "Csharp/CsharpNote.md",
-    "Csharp/CSharp设计模式.md",
     "Csharp/other/Pasted image 20241211224507.png",
     "Csharp/other/Pasted image 20241116001247.jpg",
     "Csharp/other/Pasted image 20241116001221.jpg",
@@ -173,7 +174,6 @@
     "C++/other/Pasted image 20241104231338.png",
     "C++/other",
     "C++/Pasted image 20241104231241.png",
-    "C++/other/Pasted image 20241102191744.png",
     "C++",
     "Csharp"
   ]

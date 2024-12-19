@@ -1095,6 +1095,66 @@ class DaysTemp
 ![](https://images2015.cnblogs.com/blog/759721/201611/759721-20161107140731920-764925545.jpg)
 
 
+
+### 本地变量
+
+---
+
+与类的字段一样，本地变量也保存数据。字段通常保存和对象状态有关的数据，而本地变量通常用于保存本地的或临时的计算数据。
+
+- 本地变量的存在性和生存期仅限于创建它的块及其内嵌的块
+    - 它从声明它的那一点开始存在
+    - 它在块完成执行时结束存在
+- 可以在方法体内任意位置声明本地变量，但必须在使用前声明
+
+![](https://images2015.cnblogs.com/blog/759721/201611/759721-20161114192209029-1673180578.jpg)
+
+##### 类型推断和var关键字
+
+观察下面的代码，你会发现编译器其实能从初始化语句的右边推断出来类型名。
+
+- 第一个变量声明中，编译器能推断出15是int型
+- 第二个变量声明中，右边的对象创建表达式返回了一个MyExcellentClass类型对象
+
+所以在这两种情况中，在声明开始的显式的类型名是多余的。
+
+```cs
+static void Main()
+{
+    int myInt = 15;
+    MyExcellentClass mec = new MyExcellentClass();
+    ...
+}
+
+为了避免这种冗余，可以在变量声明开始的显式类型名位置使用var关键字
+
+static void Main()
+{
+    var myInt = 15;
+    var mec = new MyExcellentClass();
+    ...
+}
+
+```
+var不是特定的类型变量符号。它表示任何可以从初始化语句的右边推断出来的类型。  
+使用var有一些重要的条件
+
+- 只能用于本地变量，不能用于字段
+- 只能在变量声明中包含初始化时使用
+- 一旦编译器推断出变量的类型，它就是固定且不能更改的
+
+> 说明：var关键字不像JavaScript的var那样可以引用不同的类型。它是从等号右边推断出的实际类型的速记。var关键字并不改变C#的强类型性质。
+
+
+
+
+
+
+
+
+
+
+
 ## 12-16 第五章
 
 ### 方法体内部代码的执行
@@ -1120,3 +1180,50 @@ static void Main()
 }
 ```
 
+![[Pasted image 20241219224738.jpg]]
+
+### 从类的外部访问静态成员
+
+静态成员可以使用点运算符从类的外部访问。但因为没有实例，所以必须使用类名。
+
+```cs
+类名
+ ↓
+D.Mem2=5;
+   ↑
+  成员名
+```
+
+##### 静态字段示例
+
+- 一个方法设置两个数据成员的值
+- 另一个方法显示两个数据成员的值
+
+```cs
+class D
+{
+    int Mem1;
+    static int Mem2;
+    public void SetVars(int v1,int v2)
+    {
+        Mem1=v1;
+        Mem2=v2;
+    }
+    public void Display(string str)
+    {
+        Console.WriteLine("{0}:Mem1={1},Mem2={2}",str,Mem1,Mem2);
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        D d1=new D(),d2=new D();
+        d1.SetVars(2,4);
+        d1.Display("d1");
+        d2.SetVars(15,17);
+        d2.Display("d2");
+        d1.Display("d1");
+    }
+}
+```
