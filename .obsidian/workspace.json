@@ -137,7 +137,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -154,7 +155,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "27e74bc604ef8310",
+  "active": "8e621e204120093f",
   "lastOpenFiles": [
     "Csharp/other/2898190955aec9f9dde1627e68e9069.png",
     "Csharp/CsharpNote.md",
