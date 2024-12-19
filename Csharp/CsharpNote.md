@@ -1245,6 +1245,10 @@ class Program
 
 
 
+![[Pasted image 20241219234305.png]]
+
+sizeof是无法表示出var的类型的，不安全的
+
 
 
 
