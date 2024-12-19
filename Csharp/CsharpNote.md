@@ -1145,10 +1145,103 @@ var不是特定的类型变量符号。它表示任何可以从初始化语句�
 
 > 说明：var关键字不像JavaScript的var那样可以引用不同的类型。它是从等号右边推断出的实际类型的速记。var关键字并不改变C#的强类型性质。
 
+var不改变强转类型的
+`var` 关键字用于局部变量的隐式类型化，而显式类型转换（cast）用于将一个类型强制转换为另一个类型。
+
+派生类（Derived Class）的概念在面向对象编程（OOP）中指的是一个类（称为子类）继承另一个类（称为基类或父类）的属性和方法。这并不是说派生类被“包含”在基类里面，而是说派生类从基类“继承”了代码。这种继承关系允许派生类获得基类的功能，并可以添加或修改这些功能以满足特定的需求。
+
+以下是派生类的一些关键点：
+
+1. **继承**：派生类继承了基类的公共和受保护的成员，但不包括私有成员。这意味着派生类的对象可以访问基类的公共接口。
+    
+2. **多态**：派生类可以重写（Override）基类的方法，这允许在派生类中定义与基类不同的行为。
+    
+3. **扩展**：派生类可以添加新的成员（字段、属性、方法等），这些成员在基类中不存在。
+    
+4. **特化**：派生类可以是对基类的一个特化，意味着它提供了更具体的实现。
+    
+5. **层次结构**：类之间可以形成层次结构，一个基类可以有多个子类，每个子类都可以进一步有自己的子类。
+    
+
+在你提到的 `Dog` 和 `Animal` 的例子中：
+
+- `Animal` 是基类，它定义了所有动物共有的基本属性和行为。
+- `Dog` 是派生自 `Animal` 的派生类，它继承了 `Animal` 的属性和行为，并可以添加特有的属性（如 `Breed`）和行为（如 `Bark` 方法）。
+
+这种关系可以这样理解：
+
+- `Dog` **is a** `Animal`，意味着 `Dog` 是 `Animal` 的一种特殊类型。
+- `Dog` **has a** `Animal`，意味着 `Dog` 拥有 `Animal` 的所有属性和方法，并且可能还有更多。
+
+因此，派生类 `Dog` 并不是被包含在基类 `Animal` 里面，而是 `Dog` 从 `Animal` 继承了特性，并可能扩展了新的特性。这种继承关系是面向对象设计中的一个核心概念，它允许代码的复用和层次结构的构建。
 
 
+此处讲解一下派生类的向上和向下转型
+```cs
+// 定义基类 Animal
+public class Animal
+{
+    // 基类属性
+    public string Name { get; set; }
+    public int Age { get; set; }
 
+    // 基类方法
+    public void Eat()
+    {
+        Console.WriteLine("The animal is eating.");
+    }
 
+    public void Sleep()
+    {
+        Console.WriteLine("The animal is sleeping.");
+    }
+}
+
+// 定义派生类 Dog
+public class Dog : Animal
+{
+    // 派生类特有属性
+    public string Breed { get; set; }
+
+    // 覆盖基类方法
+    public override void Eat()
+    {
+        Console.WriteLine("The dog is eating.");
+    }
+
+    // 派生类特有方法
+    public void Bark()
+    {
+        Console.WriteLine("The dog says: Woof!");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // 创建 Dog 类型的对象
+        Dog dog = new Dog
+        {
+            Name = "Buddy",
+            Age = 3,
+            Breed = "Golden Retriever"
+        };
+
+        // 向上转型：将 Dog 对象赋值给 Animal 类型的引用
+        Animal animal = dog;
+
+        // 调用基类方法
+        animal.Eat(); // 输出: The dog is eating.（因为 Eat 方法被覆盖）
+
+        // 向下转型：将 Animal 类型的引用转换回 Dog 类型
+        Dog specificDog = (Dog)animal;
+
+        // 调用派生类特有方法
+        specificDog.Bark(); // 输出: The dog says: Woof!
+    }
+}
+```
 
 
 
