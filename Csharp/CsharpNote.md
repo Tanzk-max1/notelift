@@ -1335,3 +1335,88 @@ class Program
 
 - 之前我们已经看到了，只有在实例创建后才产生实例成员，实例销毁后实例成员也就不在存在
 - 即使类没有实例，也存在静态成员，并可以访问
+
+
+在 C# 中，静态成员不需要像实例成员那样声明实例就可以被访问，但是它们仍然需要在类中声明。以下是一些需要声明静态成员的情况：
+
+1. **访问静态成员**：尽管静态成员不需要实例就可以访问，但它们必须在类中声明后才能被访问。例如，如果你想要访问一个类的静态属性或方法，你首先需要在类定义中声明它们。
+
+   ```csharp
+   public class UtilityClass
+   {
+       public static string Greeting = "Hello, World!";
+   }
+
+   // 可以在不创建实例的情况下访问静态成员
+   Console.WriteLine(UtilityClass.Greeting);
+   ```
+
+2. **静态方法中的静态成员访问**：在静态方法中，你不能访问类的实例成员，因为静态方法不与类的任何特定实例相关联。在这种情况下，静态成员需要被声明以便在静态方法中使用。
+
+   ```csharp
+   public class Calculator
+   {
+       public static int Add(int a, int b)
+       {
+           return a + b;
+       }
+   }
+
+   // 调用静态方法，不需要创建实例
+   int result = Calculator.Add(5, 3);
+   ```
+
+3. **静态构造函数**：静态成员有时在静态构造函数中初始化，这需要声明静态成员。
+
+   ```csharp
+   public class Configuration
+   {
+       public static string Settings;
+
+       static Configuration()
+       {
+           Settings = "Default Settings";
+       }
+   }
+   ```
+
+4. **静态字段初始化**：静态字段可以在声明时初始化，这也是一种声明。
+
+   ```csharp
+   public class Constants
+   {
+       public static readonly int MaxValue = 100;
+   }
+   ```
+
+5. **参与静态类**：如果一个类被声明为静态的，那么它所有的成员都必须是静态的，并且这个类不能被实例化。
+
+   ```csharp
+   public static class Helper
+   {
+       public static void PrintMessage(string message)
+       {
+           Console.WriteLine(message);
+       }
+   }
+   ```
+
+6. **继承和多态**：虽然静态成员不支持多态，但在继承中，基类的静态成员可以被子类访问，但它们需要在基类中声明。
+
+   ```csharp
+   public class BaseClass
+   {
+       public static string BaseMessage = "Base Message";
+   }
+
+   public class DerivedClass : BaseClass
+   {
+       // 可以访问BaseClass的静态成员
+       public static void DisplayBaseMessage()
+       {
+           Console.WriteLine(BaseMessage);
+       }
+   }
+   ```
+
+总的来说，静态成员需要在类中声明，以便它们可以被识别和访问。静态成员的声明是类定义的一部分，它们的存在不依赖于类的任何特定实例。
