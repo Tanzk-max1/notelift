@@ -1423,3 +1423,68 @@ class Program
 
  
 ![[Pasted image 20241223225322.jpg]]
+
+
+### 成员常量
+
+---
+```
+
+成员常量类似本地常量，只是它被声明在类声明中而不是方法内。
+
+class MyClass
+{
+    const int IntVal=100;//定义值为100的int类型常量
+}
+const double PI=3.1416; //错误：不能在类型声明之外
+
+与本地常量类似，初始化成员常量的值在编译时必须是可计算的。
+
+class MyClass
+{
+    const int IntVal1=100;
+    const int IntVal2=2*IntVal1;//正确：因为IntVal的值在前一行已设置
+}
+
+与本地常量类似，不能在成员常量声明后给它赋值
+
+class MyClass
+{
+    const int IntVal//错误：声明时必须初始化
+    IntVal=100;     //错误：不允许赋值
+}
+
+> 与C和C++不同，在C#中没有全局变量。每个常量都必须声明在类型内。
+```
+
+### 常量与静态量
+
+---
+
+成员常量比本地常量更有趣，因为它们表现得像静态值。它们对类的每个实例都是“可见的”，而且即使没有类的实例也可以用。与真正的静态量不同，常量没有自己的存储位置，而是在编译时被编译器替换。常量类似C和C++中的#define。  
+正因为常量在内存没有存储位置，所以它也不能作为左值（被赋值）。  
+static静态量是有自己的存储位置的。
+
+例：常量示例
+
+```cs
+class X
+{
+    public const double PI=3.1416;
+}
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("pi={0}",X.PI);
+    }
+}
+```
+
+![](https://images2015.cnblogs.com/blog/759721/201611/759721-20161124131234534-249564764.jpg)
+
+![](https://images2015.cnblogs.com/blog/759721/201611/759721-20161124131253862-137897376.jpg)
+
+虽然常量成员表现得像一个静态量，但不能将常量声明为static
+
+static const double PI=3.14;//错误：不能将常量声明为static
