@@ -1504,3 +1504,23 @@ static const double PI=3.14;//错误：不能将常量声明为static
 - 不声明后备字段-编译器根据属性类型分配存储
 - 不能提供访问器的方法体-它们必须被简单地声明为分号。get相当于简单的内存读，set相当于简单的写
 - 除非通过访问器，否则不能访问后备字段。因为不能用其他方法访问，所以实现只读和只写属性没有意义，因此使用自动属性必须同时提供读写访问器。
+
+```cs
+class C1
+{
+    public int MyValue          //属性：分配内存
+    {
+        set;get;//因为
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        C1 c=new C1();
+        Console.WriteLine("MyValue:{0}",c.MyValue);
+        c.MyValue=20;
+        Console.WriteLine("MyValue:{0}",c.MyValue);
+    }
+}
+```
