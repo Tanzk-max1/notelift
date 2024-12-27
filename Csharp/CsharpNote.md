@@ -1524,3 +1524,6 @@ class Program
     }
 }
 ```
+
+
+![[Pasted image 20241227215600.jpg]]
