@@ -1527,3 +1527,5 @@ class Program
 
 
 ![[Pasted image 20241227215600.jpg]]
+
+### 实例构造函数
