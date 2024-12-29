@@ -138,12 +138,12 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -156,7 +156,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "27e74bc604ef8310",
+  "active": "8f114b7bc323e86e",
   "lastOpenFiles": [
     "Csharp/other/Pasted image 20241227215600.jpg",
     "Csharp/other/Pasted image 20241224215627.png",
