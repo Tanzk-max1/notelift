@@ -1748,10 +1748,93 @@ class Program
 {
     static void Main()
     {
-        var a=new RandomNumberClass();
-        var b=new RandomNumberClass();
+        var a=new RandomNumberClass();//第一次调用了静态构造
+        var b=new RandomNumberClass();//只能使用了实例构造了
         Console.WriteLine("Next Random #:{0}",a.GetRandomNumber());
         Console.WriteLine("Next Random #:{0}",b.GetRandomNumber());
+    }
+}
+```
+
+
+### 对象初始化语句
+
+---
+
+对象初始化语句扩展了创建语法，允许你在创建新的对象实例时，设置字段和属性的值。
+
+![](https://images2015.cnblogs.com/blog/759721/201611/759721-20161124132222643-1633297838.jpg)  
+
+例：
+
+new Point {X=5,Y=6};
+
+- 创建对象的代码必须能够访问初始化的字段和属性。如上例中，X和Y必须是public
+- 初始化发生在构造方法执行之后，因为构造方法中设置的值可能会在对象初始化中重置为不同的值
+
+```cs
+public class Point
+{
+    public int X=1;
+    public int Y=2;
+}
+class Program
+{
+    static void Main()
+    {
+        var pt1=new Point();
+        var pt2=new Point(X=5,Y=6);
+        Console.WriteLine("pt1:{0},{1}",pt1.X,pt1.Y);
+        Console.WriteLine("pt2:{0},{1}",pt2.X,pt2.Y);
+    }
+}
+
+```
+![](https://images2015.cnblogs.com/blog/759721/201611/759721-20161124132306909-30751795.jpg)
+
+
+### 析构函数
+
+---
+
+析构函数(destructor)执行在类的实例被销毁前需要的清理或释放非托管资源行为。非托管资源通过Win32 API获得文件句柄，或非托管内存块。使用.NET资源无法得到它们，因此如果坚持使用.NET类，就无需为类编写析构函数。  
+因此，我们等到第25章再描述析构函数。
+
+### readonly修饰符
+
+---
+
+字段可用readonly修饰。其作用类似于将字段声明为const，一旦值被设定就不能改变。
+
+- const字段只能在字段声明语句中初始化，而readonly字段可以在下列任意位置设置它的值
+    - 字段声明语句，类似const
+    - 类的任何构造函数。如果是static字段，初始化必须在静态构造函数中完成
+- const字段的值必须在编译时决定，而readonly字段值可以在运行时决定。这种增加的自由性允许你在不同环境或构造函数中设置不同的值
+- 和const不同，const的行为总是静态的，而readonly字段有以下两点
+    - 它可以是实例字段，也可以是静态字段
+    - 它在内存中有存储位置
+
+例：Shape类，两个readonly字段
+
+- 字段PI在它的声明中初始化
+- 字段NumberOfSides根据调用的构造函数被设置为3或4
+
+```cs
+class Shape
+{
+    readonly double PI=3.1416;
+    readonly int NumberOfSides;
+    public Shape(double side1,double side2)
+    {
+        // 矩形
+        NumberOfSides=4;
+        ...
+    }
+    public Shape(double side1,double side2,double side3)
+    {
+        // 三角形
+        NumberOfSides=3;
+        ...
     }
 }
 ```
