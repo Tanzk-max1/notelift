@@ -1529,3 +1529,143 @@ class Program
 ![[Pasted image 20241227215600.jpg]]
 
 ### 实例构造函数
+
+_实例构造函数_是一个特殊的方法，它在创建类的每个新实例时执行。
+
+- 构造函数用于初始化类实例的状态
+- 如果希望从类的外部创建类的实例，需要将构造函数声明为public
+
+```
+class MyClass
+{         和类名相同
+             ↓
+    public MyClass()
+    {     ↑
+       没有返回类型
+        ...
+    }
+}
+```
+
+- 构造函数的名称与类相同
+- 构造函数不能有返回值
+
+例：使用构造函数初始化TimeOfInstantiation字段为当前时间
+
+```
+class MyClass
+{
+    DateTime TimeOfInstantiation;
+    ...
+    public MyClass()
+    {
+        TimeOfInstantiation=DateTime.Now;
+    }
+    ...
+}
+
+```
+> 在学完静态属性后，我们可以仔细看看初始化TimeOfInstantiation那一行。DateTime类(实际上它是一个结构，但由于还没介绍结构，你可以先把它当成类)是从BCL中引入的，Now是类DateTime的静态属性。Now属性创建一个新的DateTime类实例，将其初始化为系统时钟中的当前日期和时间，并返回新DateTime实例的引用。
+
+##### 带参数的构造函数
+
+- 构造函数可以带参数。参数语法和其他方法完全相同
+- 构造函数可以被重载
+
+例：有3个构造函数的Class
+
+```cs
+class Class1
+{
+    int Id;
+    string Name;
+    public Class1(){Id=28;Name="Nemo";}
+    public Class1(int val){Id=val;Name="Nemo";}
+    public Class1(String name){Name=name;}
+    //函数重载了
+    public void SoundOff()
+    {
+        Console.WriteLine("Name{0},Id{1}",Name,Id);
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        CLass1 a=new Class1(),
+               b=new Class1(7),
+               c=new Class1("Bill");
+        a.SoundOff();
+        b.SoundOff();
+        c.SoundOff();
+    }
+}
+```
+
+![](https://images2015.cnblogs.com/blog/759721/201611/759721-20161124131920440-1777400707.jpg)
+
+##### 默认构造函数
+
+如果在类的声明中没有显式的提供实例构造函数，那么编译器会提供一个隐式的默认构造函数，它有以下特征。
+
+- 没有参数
+- 方法体为空
+
+只要你声明了构造函数，编译器就不再提供默认构造函数。
+
+例：显式声明了两个构造函数的Class2
+
+```cs
+class Class2
+{
+    public Class2(int Value){...}
+    public Class2(string Value){...}
+}
+class Program
+{
+    static void Main()
+    {
+        Class2 a=new Class2();//错误！没有无参数的构造函数
+        ...
+    }
+}
+```
+
+- 因为已经声明了构造函数，所以编译器 **不提供无参数的默认构造函数
+- 在Main中试图使用无参数的构造函数创建实例，编译器产生一条错误信息
+
+
+### 静态构造函数
+
+---
+
+实例构造函数初始化类的每个新实例，static构造函数初始化类级别的项。通常，静态构造函数初始化类的静态字段。
+
+- 初始化类级别的项
+    - 在引用任何静态成员之前
+    - 在创建类的任何实例之前
+- 静态构造函数在以下方面与实例构造函数类似
+    - 静态构造函数的名称和类名相同
+    - 构造函数不能返回值
+- 静态构造函数在以下方面和实例构造函数不同
+    - 静态构造函数声明中使用static
+    - 类只能有一个静态构造函数，而且不能带参数
+    - 静态构造函数不能有访问修饰符
+
+```
+class Class1
+{
+    static Class1
+    {
+        ...
+    }
+}
+
+```
+关于静态构造函数还有其他要点
+
+- 类既可以有静态构造函数也可以有实例构造函数
+- 如同静态方法，静态构造函数不能访问类的实例成员，因此也不能是一个this访问器
+- 不能从程序中显式调用静态构造函数，系统会自动调用它们，在：
+    - 类的任何实例被创建前
+    - 类的任何静态成员被引用前
