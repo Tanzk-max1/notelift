@@ -1678,7 +1678,7 @@ class Class1
 - **特点**：
   - 没有访问修饰符（如 public、private 等）。
   - 不能带有任何参数。
-  - 用于执行只需要执行一次的初始化，例如静态变量的赋值。
+  - 用于执行只需要执行一次的初始化，例如静态变量的赋值。（换个说法就是只能被调用一次）
   - 如果类中没有静态构造函数，并且类中定义了静态成员，那么这些静态成员的默认值将在类加载时自动初始化。
 
 #### 实例构造函数（Instance Constructor）
@@ -1729,3 +1729,29 @@ class Program
 在这个例子中，当你首次引用 `MyClass` 类时，静态构造函数会被调用。然后，当你创建 `MyClass` 的实例时，实例构造函数会被调用。这展示了静态构造函数和实例构造函数可以共存于同一个类中，并且各自执行不同的初始化任务。
 
 
+![[Pasted image 20241229161226.png]]**静态构造函数示例**
+
+```cs
+class RandomNumberClass
+{
+    private static Random RandomKey;
+    static RandomNumberClass()
+    {
+        RandomKey=new Random();
+    }
+    public int GetRandomNumber()
+    {
+        return RandomKey.Next();
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        var a=new RandomNumberClass();
+        var b=new RandomNumberClass();
+        Console.WriteLine("Next Random #:{0}",a.GetRandomNumber());
+        Console.WriteLine("Next Random #:{0}",b.GetRandomNumber());
+    }
+}
+```
