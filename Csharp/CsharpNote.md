@@ -1837,4 +1837,370 @@ class Shape
         ...
     }
 }
+//`NumberOfSides` 是一个 `readonly` 字段，这意味着它只能在声明时或在构造函数中被赋值，不能在类的其他方法中被访问或修改。
 ```
+
+
+### this关键字
+
+---
+
+this关键字在类中使用，表示对当前实例的引用。它只能被用在下列类成员的代码块中。
+
+- 实例构造函数
+- 实例方法
+- 属性和索引器的实例访问器
+
+静态成员不是实例的一部分，所以不能在静态函数成员中使用this。换句话说，this用于下列目的：
+
+- 用于区分类的成员和本地变量或参数
+- 作为调用方法的实参
+
+例：MyClass类，在方法内使用this关键字区分两个Var1
+
+class MyClass
+{
+    int Var1=10;
+    public int ReturnMaxSum(int Var1)
+    {          参数  字段
+                 ↓    ↓
+        return Var1>this.Var1?Var1:this.Var1;
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        var mc=new MyClass();
+        Console.WriteLine("Max:{0}",mc.ReturnMaxSum(30));
+        Console.WriteLine("Max:{0}",mc.ReturnMaxSum(5));
+    }
+}
+
+![](https://images2015.cnblogs.com/blog/759721/201611/759721-20161124132346628-629002704.jpg)
+
+### 索引器
+
+---
+
+假如我们定义一个Employee类，它带有3个string型字段，如果不用索引器，我们用字段名访问它们。
+
+class Employee
+{
+    public string LastName;
+    public string FirstName;
+    public string CityOfBirth;
+}
+class Program
+{
+    static void Main()
+    {
+        var emp1=new Employee();
+        emp1.LaseName="Doe";
+        emp1.FirstName="Jane";
+        emp1.CityOfBirth="Dallas";
+    }
+}
+
+![](https://images2015.cnblogs.com/blog/759721/201611/759721-20161124132406409-1332004672.jpg)
+
+如果能使用索引访问它们将会很方便，好像该实例是字段的数组一样。
+
+    static void Main()
+    {
+        var emp1=new Employee();
+        emp1[0]="Doe";
+        emp1[1]="Jane";
+        emp1[2]="Dallas";
+    }
+
+![](https://images2015.cnblogs.com/blog/759721/201611/759721-20161124132427346-1278891777.jpg)
+
+##### 什么是索引器
+
+索引器是一组get和set访问器，与属性类似。
+
+##### 索引器和属性
+
+索引器和属性在很多方法类似
+
+- 和属性一样，索引器不用分配内存来存储
+- 索引器通常表示多个数据成员
+
+> 可以认为索引器是为类的多个数据成员提供get、set属性。通过索引器，可以在许多可能的数据成员中进行选择。索引器本身可以是任何类型。
+
+关于索引器的注意事项
+
+- 和属性一样，索引器可以只有一个访问器，也可以两个都有
+- 索引器总是实例成员，因此不能声明为static
+- 和属性一样，实现get、set访问器的代码不必一定关联到某字段或属性。这段代码可以什么都不做，只要get访问器返回某个指定类型值即可
+
+##### 声明索引器
+
+- 索引器没有名称。在名称的位置，关键词是this
+- 参数列表在方括号中
+- 参数列表中至少声明一个参数
+
+Return Type this [Type param1,...]
+{
+    get{...}
+    set{...}
+}
+
+声明索引器类似于声明属性。
+
+![](https://images2015.cnblogs.com/blog/759721/201611/759721-20161124132454550-1106582661.jpg)  
+
+##### 索引器的set访问器
+
+当索引器被用于赋值时，set访问器被调用，并接受两项数据
+
+- 一个隐式参数，名为value，value持有要保存的数据
+- 一个或多个索引参数，表示数据应该保存在哪里
+
+下图例表明set访问器有如下语义
+
+- 它的返回类型为void
+- 它使用的参数列表和索引器声明中的相同
+- 它有一个名为value的隐式参数，值参类型和索引类型相同
+
+![](https://images2015.cnblogs.com/blog/759721/201611/759721-20161124132530643-1647745673.jpg)
+
+##### 索引器的get访问器
+
+get访问器方法体内的代码必须检查索引参数，确定它表示哪个字段，并返回字段值。  
+get访问器有如下语义
+
+- 它的参数列表和索引器声明中的相同
+- 它返回与索引器相同类型的值
+
+![](https://images2015.cnblogs.com/blog/759721/201611/759721-20161124132558315-840405952.jpg)
+
+##### 关于索引器的补充
+
+和属性一样，不能显示调用get、set访问器。取而代之，当索引器用在表达式中取值时，将自动调用get访问器。索引器被赋值时，自动调用set访问器。  
+在“调用”索引器时，要在方括号中提供参数。
+
+   索引   值
+    ↓    ↓
+emp[0]="Doe";           //调用set访问器
+string NewName=emp[0];  //调用get访问器
+
+##### 为Employee示例声明索引器
+
+下面代码为示例中的类Employee声明了一个索引器
+
+- 索引器需要去写string类型的值，所以string必须声明为索引器的类型。它必须声明为public，以便从类外部访问
+- 3个字段被强行索引为整数0-2，所以本例中方括号中间名为index的形参必须为int型
+- 在set访问器方法体内，代码确定索引指的是哪个字段，并把隐式变量value赋给它。在get访问器方法体内，代码确定索引指的哪个字段，并返回该字段的值
+
+class Employee
+{
+    public string LastName;
+    public string FirstName;
+    public string CityOfBirth;
+    public string this[int index]
+    {
+        set
+        {
+            switch(index)
+            {
+                case 0:LaseName=value;
+                    break;
+                case 1:FirstName=value;
+                    break;
+                case 2:CityOfBirth=value;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("index");
+            }
+        }
+        get
+        {
+            switch(index)
+            {
+                case 0:return LaseName;
+                case 1:return FirstName;
+                case 2:return CityOfBirth;
+                default:throw new ArgumentOutOfRangeException("index");
+            }
+        }
+    }
+}
+
+##### 另一个索引器示例
+
+例：为类Class1的两个int字段设置索引
+
+class Class1
+{
+    int Temp0;
+    int Temp1;
+    public int this[int index]
+    {
+        get
+        {
+            return(index==0?Temp0:Temp1;)
+        }
+        set
+        {
+            if(index==0){Temp0=value;}
+            else{Temp1=value;}
+        }
+    }
+}
+class Example
+{
+    static void Main()
+    {
+        var a=new Class1();
+        Console.WriteLine("Values -- T0:{0},T1:{1}",a[0],a[1]);
+        a[0]=15;
+        a[1]=20;
+        Console.WriteLine("Values--T0:{0},T1:{1}",a[0],a[1]);
+    }
+}
+
+![](https://images2015.cnblogs.com/blog/759721/201611/759721-20161124132702034-1507289681.jpg)
+
+##### 索引器重载
+
+类可以有任意多个参数列表不同的索引器。（返回类型不同，不是重载）
+
+例：下面示例有3个索引器
+
+class Myclass
+{
+    public string this[int index]
+    {
+        get{...}
+        set{...}
+    }
+    public string this[int index1,int index2]
+    {
+        get{...}
+        set{...}
+    }
+    public int this[float index1]
+    {
+        get{...}
+        set{...}
+    }
+}
+
+### 访问器的访问修饰符
+
+---
+
+本章中，你已看到了两种带get、set访问器的函数成员：属性和索引器。默认情况下，成员的两个访问器的访问级别和成员自身相同。也就是说，如果一个属性有public访问级别，那么它的两个访问器也是public的。
+
+不过，你可以为两个访问器分配不同访问级别。例如，下面代码演示了一个常见且**重要**的例子–set访问器声明为private，get访问器声明为public。(get之所以是public，是因为属性的访问级别就是public)
+
+注意：在这段代码中，尽管可以从类的外部读取该属性，但却只能在类的内部设置它。这是非常重要的封装工具。
+
+class Person
+{
+    public string Name{get;private set;}
+    public Person(string name)
+    {
+        Name=name;
+    }
+}
+class Program
+{
+    static public void Main()
+    {
+        var p=new Person("Capt,Ernest Evans");
+        Console.WriteLine("Person's name is {0}",p.Name);
+    }
+}
+
+访问器的访问修饰符有几个限制。最重要的限制如下。
+
+- 仅当成员（属性或索引器）既有get访问器也有set访问器时，其访问器才能有访问修饰符
+- 虽然两个访问器都必须出现，但它们中只能有一个有访问修饰符
+- 访问器的访问修饰符必须比成员的访问级别有更严格的限制性，即访问器的访问级别必须比成员的访问级别低，详见下图
+
+![](https://images2015.cnblogs.com/blog/759721/201611/759721-20161124132747393-479209873.jpg)
+
+例如，如果一个属性的访问级别是public，在图里较低的4个级别中，它的访问器可以使用任意一个。但如果属性的访问级别是protected，则其访问器唯一能使用的访问修饰符是private。
+
+### 分部类和分部类型
+
+---
+
+类的声明可以分割成几个分部类的声明
+
+- 每个分部类的声明都含有一些类成员的声明
+- 类的分部类声明可以在同一文件中也可以在不同文件中
+
+每个局部声明必须标为partial class，而不是class。分部类声明看起来和普通类声明相同。
+
+> 类型修饰符partial不是关键字，所以在其他上下文中，可以把它用作标识符。但直接用在关键字class、struct或interface前时，它表示分部类型。
+
+例：分部类
+
+![](https://images2015.cnblogs.com/blog/759721/201611/759721-20161124132805596-801525369.jpg)  
+
+Visual Studio为标准的Windows程序模板使用了这个特性。当你从标准模板创建ASP.NET项目、Windows Forms项目或Windows Persentation Foudation(WPF)项目时，模板为每个Web页面、表单、WPF窗体创建两个类文件。
+
+- 一个文件的分部类包含由VS生成的代码，声明了页面上的组件。你不应该修改这个文件中的分部类，因为如果修改页面组件，VS会重新生成
+- 另一个文件包含的分部类可用于实现页面或表单组件的外观和行为
+- 除了分部类，还有另外两种分部类型
+    - 局部结构([第10章](http://www.cnblogs.com/moonache/p/6197243.html#wiz_toc_12))
+    - 局部接口(第15章)
+
+### 分部方法
+
+---
+
+分部方法是声明在分部类中不同部分的方法。  
+分部方法的两个部分如下
+
+- 定义分部方法声明
+    - 给出签名和返回类型
+    - 声明的实现部分只是一个分号
+- 实现分部方法声明
+    - 给出签名和返回类型
+    - 是以正常形式的语句块实现
+
+关于分部方法需要了解的重要内容如下
+
+- 定义声明和实现声明的签名和返回类型必须匹配。签名和返回类型有如下特征
+    - 返回类型必须是void
+    - 签名不能包括访问修饰符，这使分部方法是隐式私有的
+    - 参数列表不能包含out参数
+    - 在定义声明和实现声明中都必须包含上下文关键字partial，直接放在关键字void前
+- 可以有定义部分而没有实现部分。这种情况下，编译器把方法的声明以及方法内部任何对方法的调用都移除。不能只有实现部分而没有定义部分。
+
+下面是一个名为PrintSum的分部方法的示例
+
+- 因为分部方法是隐式私有的，PrintSum不能从类的外部调用。方法Add是调用PrintSum的公有方法
+
+partial class MyClass
+{
+         必须是void
+             ↓
+    partial void PrintSum(int x,int y);//定义分部方法
+    public void Add(int x,int y)
+    {
+        PrintSum(x,y);
+    }
+}
+partial class MyClass
+{
+    partial void PrintSum(int x,int y)//实现分部方法
+    {
+        Console.WriteLine("Sum i {0}",x+y);
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        var mc=new MyClass();
+        mc.Add(5,6);
+    }
+}
+
+![](https://images2015.cnblogs.com/blog/759721/201611/759721-20161124132835878-1497486010.jpg)
