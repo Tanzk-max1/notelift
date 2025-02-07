@@ -142,7 +142,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -157,6 +158,9 @@
   },
   "active": "27e74bc604ef8310",
   "lastOpenFiles": [
+    "Csharp/other/Pasted image 20250207212244.jpg",
+    "Csharp/other/Pasted image 20250207212037.png",
+    "Csharp/other/Pasted image 20250207210147.jpg",
     "Csharp/other/Pasted image 20241229161226.png",
     "Csharp/other/Pasted image 20241227215600.jpg",
     "Csharp/other/Pasted image 20241224215627.png",
@@ -167,9 +171,6 @@
     "Csharp/other/2898190955aec9f9dde1627e68e9069.png",
     "Csharp/CsharpNote.md",
     "Csharp/other/Pasted image 20241211224507.png",
-    "Csharp/other/Pasted image 20241116001247.jpg",
-    "Csharp/other/Pasted image 20241116001221.jpg",
-    "Csharp/other/Pasted image 20241116000854.jpg",
     "Csharp/ConsoleApp1",
     "Csharp/other",
     "C++/code过程遇到的问题.md",
