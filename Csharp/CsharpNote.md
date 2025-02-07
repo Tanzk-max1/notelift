@@ -2228,3 +2228,36 @@ class OtherClass:SomeCLass
 }
 
 ![](https://images2015.cnblogs.com/blog/759721/201612/759721-20161201094448771-388603077.jpg)
+
+
+```cs
+class SomeClass
+{
+    public string Field1 = "base class field;";
+    public void Method1 (string value)
+    {
+        Console.WriteLine("base class -- method1: {0} ", value);
+
+    }
+}
+class OtherClass : SomeClass
+{
+    public string Field2 = "derived class firld";
+    public void Method2(string value)
+    {
+        Console.WriteLine("Derived class -- Method2: {0}", value);
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        var oc = new OtherClass();
+        oc.Method1(oc.Field2);  //以派生字段为参数的基类方法
+        oc.Method2(oc.Field1);  //以基类字段为参数的派生方法
+        oc.Method2(oc.Field2);  //以派生字段为参数的派生方法
+    }
+}
+```
+
+
