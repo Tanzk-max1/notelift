@@ -2322,3 +2322,121 @@ class OtherClass:SomeClass
 ![[Pasted image 20250207212037.png]]
 如果没有new就会出现这个提示，能用，但是会识别出来
 ![[Pasted image 20250207212244.jpg]]
+
+```cs
+class SomeClass
+{
+    public string Field1="SomeClass Field1 ";
+    public void Method1(string value)
+    {
+        Console.WriteLine("SomeClass.Method1: {0}",value);
+    }
+}
+class OtherClass:SomeClass
+{
+    new public string Field1="OtherClass Field1";//屏蔽基类成员
+    new public void Method1(string value)//屏蔽基类成员
+    {
+        Console.WriteLine("OtherCLass.Method1: {0}",value);
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        var oc=new OtherClass();
+        oc.Method1(oc.Field1);
+    }
+}
+```
+
+![[Pasted image 20250208220020.jpg]]
+
+![[Pasted image 20250208220022.jpg]]
+
+### 对于基类访问
+
+如果派生类必须完全访问被隐藏的继承成员，可以使用 基类访问（base access）
+Console.WriteLie("{0}",base.Field1);
+
+```cs
+class SomeClass
+{
+    public string Field1="Field1 -- In the base class";
+}
+class OtherClass:SomeClass
+{
+    new public string Field1="Field1 -- In the derived class";
+    public void PrintField1()
+    {
+        Console.WriteLine(Field1);
+        Console.WriteLine(base.Field1);
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        var oc=new OtherClass();
+        oc.PrintField1();
+    }
+}
+```
+![[Pasted image 20250208220213.jpg]]
+
+相当于就是base类直接使用了基类函数上面的参数
+
+
+
+### 使用基类的引用
+
+---
+
+如果有一个派生类对象的引用，就可以获取该对象基类部分的引用。  
+例：使用基类引用
+
+- 第一行声明并初始化了变量derived，它包含一个MyDerivedClass类型对象的引用
+- 第二行声明了一个基类类型MyBaseClass的变量，并把derived中的引用转换为该类型，给出对象的基类部分的引用
+    - 基类部分的引用被存储在变量mybc中，在赋值运算符的左边
+    - 其他部分的引用不能“看到”派生类对象的其余部分，因为它通过基类类型的引用“看”这个对象
+
+MyDerivedClass derived=new MyDerivedClass();
+MyBaseClass mybc=(MyBaseClass)derived;
+
+![](https://images2015.cnblogs.com/blog/759721/201612/759721-20161201094824412-2013804290.jpg)
+
+例：两个类的声明和使用
+
+```cs
+class MyBaseClass
+{
+    public void Print()
+    {
+        Console.WriteLine("This is the base class.");
+    }
+}
+class MyDerivedClass:MyBaseClass
+{
+    new public void Print()
+    {
+        Console.WriteLine("This is the derived class");
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        var derived=new MyDerivedClass();
+        var mybc=(MyBaseClass)derived;
+        derived.Print();
+        mybc.Print();
+    }
+}
+
+```
+![](https://images2015.cnblogs.com/blog/759721/201612/759721-20161201094850724-1769582696.jpg)
+
+![](https://images2015.cnblogs.com/blog/759721/201612/759721-20161201095443599-1248226856.jpg)
+
+##### 虚方法和覆写方法
+
