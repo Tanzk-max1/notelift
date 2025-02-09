@@ -2447,4 +2447,86 @@ class Program
 - 基类的方法使用virtual标注
 - 派生类的方法使用override标注
 
-萨法沙发沙发沙发沙发
+```cs
+class MyBaseClass
+{
+    virtual public void Print()
+    ...
+}
+class MyDerivedClass:MyBaseCLass
+{
+    override public void Print()
+    ...
+}
+```
+
+
+下图阐明了这组virtual和override方法。注意和上一种情况(用new隐藏基类成员)相比在行为上的区别
+
+- 当使用基类引用(mybc)调用Print方法时，方法调用被传递到派生类执行，因为：
+    - 基类的方法被标记为virtual
+    - 在派生类中有匹配的override方法
+- 下图阐明了这一点，显示了一个从virtual Print方法后面开始，并指向override Print方法的箭头
+
+![](https://images2015.cnblogs.com/blog/759721/201612/759721-20161201095527115-1639919192.jpg)
+
+下面的代码和上一节相同，但由于使用了virtual和override，产生的结果大不相同。
+
+```cs
+class MyBaseClass
+{
+    virtual public void Print()
+    {
+        Console.WriteLine("This is the base class.");
+    }
+}
+class MyDerivedClass:MyBaseClass
+{
+    override public void Print()
+    {
+        Console.WriteLine("This is the derived class");
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        var derived=new MyDerivedClass();
+        var mybc=(MyBaseClass)derived;
+        derived.Print();
+        mybc.Print();
+    }
+}
+
+```
+![](https://images2015.cnblogs.com/blog/759721/201612/759721-20161201095601318-286909778.jpg)
+
+其他关于virtual和override的重要信息
+
+- 覆写和被覆写的方法必须有相同的可访问性。换句话说，当被覆写为private时，覆写方法不能是public等
+- 不能覆写static方法和非虚方法
+- 方法、属性和索引器，以及另一种成员类型事件(将在后面阐述)，都可以被声明为virtual和override
+
+> [!关于虚方法的多态性] 关于虚方法的多态性
+> ### 1. **虚方法与多态**
+>当你在基类中将一个方法标记为 `virtual`，并在派生类中使用 `override` 来重写它时，这个方法就成为了虚方法。虚方法的调用将在运行时根据对象的实际类型来确定调用哪个实现。
+>### 2. **对象的实际类型**
+>在你的代码中，`derived` 是一个 `MyDerivedClass` 类型的实例，尽管你将它强制转换为 `MyBaseClass` 类型（`var mybc = (MyBaseClass)derived;`），但对象的实际类型仍然是 `MyDerivedClass`。
+>### 3. **动态绑定**
+>当调用 `mybc.Print()` 时，C# 编译器会在运行时检查对象的实际类型，而不是引用类型。因此，即使 `mybc` 是 `MyBaseClass` 类型的引用，它仍然会调用 `MyDerivedClass` 的 `Print` 方法。
+
+如果 `MyDerivedClass` 的 `Print` 方法中调用了基类的 `Print` 方法（使用 `base.Print()`），例如：
+```cs
+override public void Print()
+{
+    base.Print(); // 调用 MyBaseClass 的 Print 方法
+    Console.WriteLine("this is the deriver class");
+}
+```
+
+```cs
+this is the base
+this is the deriver class
+this is the base
+this is the deriver class
+```
