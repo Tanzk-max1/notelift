@@ -2532,4 +2532,101 @@ this is the deriver class
 ```
 
 
-都是废话废话
+
+##  枚举
+枚举是由程序员定义的类型与类或结构一样。
+
+- 与结构一样，枚举是值类型，因此直接存储它们的数据，而不是分开存储成引用和数据
+- 枚举只有一种类型的成员：命名的整数值常量
+
+
+```
+关键字 枚举名称
+  ↓      ↓
+enum TrafficLight
+{
+    Green,    ←  逗号分隔，没有分号
+    Yellow,
+    Red
+}
+```
+
+每个枚举类型都有一个底层整数类型，默认为int。
+
+- 每个枚举成员都被赋予一个底层类型的常量值
+- 在默认情况下，编译器把第一个成员赋值为0，并对每个后续成员赋的值比前一个多1
+
+```CS
+var t1=TrafficLight.Green;
+var t2=TrafficLight.Yellow;
+var t3=TrafficLight.Red;
+Console.WriteLine("{0},\t{1}",t1,(int)t1);
+Console.WriteLine("{0},\t{1}",t2,(int)t2);
+Console.WriteLine("{0},\t{1}",t3,(int)t3);
+```
+
+##### 设置底层类型和显式值
+
+可以把冒号和类型名放在枚举名之后，这样就可以使用int以外的整数类型。类型可以是任何整数类型。所有成员常量都属于枚举的底层类型。
+
+```
+enum TrafficLight:ulong
+{
+    ...
+}
+```
+
+
+##### 使用位标志的示例
+
+```cs
+[Flags]
+enum CardDeckSettings:uint
+{
+    SingleDeck    =0x01, //位0
+    LargePictures =0x02, //位1
+    FancyNumbers  =0x04, //位2
+    Animation     =0x08  //位3
+}
+class MyClass
+{
+    bool UseSingleDeck               =false,
+         UseBigPics                  =false,
+         UseFancyNumbers             =false,
+         UseAnimation                =false,
+         UseAnimationAndFancyNumbers =false;
+    public void SetOptions(CardDeckSettings ops)
+    {
+        UseSingleDeck=ops.HasFlag(CardDeckSettings.SingleDeck);
+        UseBigPics=ops.HasFlag(CardDeckSettings.LargePictures);
+        UseFancyNumbers=ops.HasFlag(CardDeckSettings.FancyNumbers);
+        UseAnimation=ops.HasFlag(CardDeckSettings.Animation);
+        CardDeckSettings testFlags=CardDeckSettings.Animation|CardDeckSettings.FancyNumbers;
+        UseAnimationAndFancyNumbers=ops.HasFlag(testFlags);
+        //HasFlag主要是用来辨认
+    }
+    public void PrintOptions()
+    {
+        Console.WriteLine("Option settings:");
+        Console.WriteLine("Use Single Deck                   - {0}",UseSingleDeck);
+        Console.WriteLine("Use Large Pictures                - {0}",UseBigPics);
+        Console.WriteLine("Use Fancy Numbers                 - {0}",UseFancyNumbers);
+        Console.WriteLine("Show Animation                    - {0}",UseAnimation);
+        Console.WriteLine("Show Animation And FancyNumbers   - {0}",UseAnimationAndFancyNumbers);
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        var mc=new MyClass();
+        CardDeckSettings ops=CardDeckSettings.SingleDeck
+                             |CardDeckSettings.FancyNumbers
+                             |CardDeckSettings.Animation;//相当于枚举，然后我选择这三个功能
+        mc.SetOption(ops);
+        mc.PrintOptions();
+    }
+}
+
+```
+![](https://images2015.cnblogs.com/blog/759721/201612/759721-20161227115156992-1901197672.jpg)
